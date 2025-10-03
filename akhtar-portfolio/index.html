@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Developer : M Akhtar - The Definitive Portfolio</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Atiya, Atte Web Solutions, Animated Background, GSAP, Full Stack Developer" name="keywords">
+    <meta
+        content="The definitive portfolio for Atte Web Solutions, featuring a 'Cybernetic Green' theme and an interactive particle background."
+        name="description">
+
+    <link href="img/favicon.ico" rel="icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            /* "Cybernetic Green" Color Palette */
+            --slate-dark: #0A192F;
+            --slate-dark-rgb: 10, 25, 47;
+            --slate-medium: #112240;
+            --slate-medium-rgb: 17, 34, 64;
+            --cyber-green: #64FFDA;
+            --cyber-green-rgb: 100, 255, 218;
+            --text-light: #CCD6F6;
+            --text-light-rgb: 204, 214, 246;
+            --text-medium: #A8B2D1;
+            --text-medium-rgb: 168, 178, 209;
+            --border-subtle: rgba(var(--cyber-green-rgb), 0.2);
+            --border-highlight: rgba(var(--cyber-green-rgb), 0.6);
+            --border-radius-std: 0.6rem;
+            --shadow-glow: 0 0 25px rgba(var(--cyber-green-rgb), 0.3);
+            --font-heading: 'Orbitron', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--slate-dark);
+            color: var(--text-medium);
+            line-height: 1.75;
+            overflow-x: hidden;
+        }
+
+        #particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        section {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        .section-bg-alt {
+            background-color: rgba(var(--slate-medium-rgb), 0.6);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        #navbarMain {
+            background-color: rgba(var(--slate-dark-rgb), 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand-custom {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--cyber-green) !important;
+            text-shadow: 0 0 10px var(--cyber-green);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-medium);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            padding: 0.5rem 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--cyber-green);
+        }
+
+        .navbar-toggler {
+            border-color: var(--border-subtle);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(100, 255, 218, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-text-content .subheading {
+            color: var(--cyber-green);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text-content .main-heading {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--text-light);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text-content .description {
+            max-width: 650px;
+            font-size: 1.1rem;
+            margin: 0 auto 2rem auto;
+        }
+
+        .btn-cyber-glow {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            background: transparent;
+            color: var(--cyber-green);
+            border: 2px solid var(--cyber-green);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--cyber-green), inset 0 0 10px var(--cyber-green);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cyber-glow:hover {
+            background: var(--cyber-green);
+            color: var(--slate-dark);
+            box-shadow: 0 0 30px var(--cyber-green);
+            text-shadow: none;
+            transform: translateY(-3px);
+        }
+
+        .typed-cursor {
+            color: var(--cyber-green);
+            font-weight: 900;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4.5rem;
+        }
+
+        .section-header .sub-title {
+            color: var(--cyber-green);
+        }
+
+        .section-header .main-title {
+            font-family: var(--font-heading);
+            color: var(--text-light);
+        }
+
+        .section-header .main-title span {
+            color: var(--text-light);
+        }
+
+        .item-card-glass {
+            background: rgba(var(--slate-medium-rgb), 0.4);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--border-radius-std);
+            padding: 2.2rem;
+            height: 100%;
+            transition: all 0.35s ease;
+            overflow: hidden;
+        }
+
+        .item-card-glass:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-highlight);
+            background: rgba(var(--slate-medium-rgb), 0.7);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .item-card-glass .card-icon-area {
+            font-size: 2.3rem;
+            color: var(--cyber-green);
+            margin-bottom: 1.6rem;
+        }
+
+        .item-card-glass h3 {
+            font-size: 1.45rem;
+            color: var(--text-light);
+        }
+
+        .project-video-wrapper {
+            position: relative;
+            margin: -2.2rem -2.2rem 1.5rem -2.2rem;
+            border-bottom: 1px solid var(--border-subtle);
+            cursor: pointer;
+        }
+
+        .project-video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .play-button-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(var(--slate-dark-rgb), 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4rem;
+            color: var(--cyber-green);
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            text-shadow: 0 0 10px var(--cyber-green);
+        }
+
+        .project-video-wrapper.playing .play-button-overlay {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #skills .skill-category h4 {
+            color: var(--cyber-green);
+            margin-bottom: 1.2rem;
+            font-size: 1.35rem;
+        }
+
+        #skills ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #skills ul li {
+            background-color: var(--slate-medium);
+            border: 1px solid var(--border-subtle);
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 0.6rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        #skills ul li:hover {
+            background-color: var(--cyber-green);
+            color: var(--slate-dark);
+            transform: scale(1.05);
+        }
+
+        #contact .form-control {
+            background-color: var(--slate-medium) !important;
+            color: var(--text-light) !important;
+            border: 1px solid var(--border-subtle) !important;
+        }
+
+        #contact .form-control:focus {
+            border-color: var(--cyber-green) !important;
+            box-shadow: 0 0 15px rgba(var(--cyber-green-rgb), 0.3) !important;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float i {
+            margin-top: 15px;
+        }
+
+        .footer-social-icons a {
+            color: var(--text-medium);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social-icons a:hover {
+            color: var(--cyber-green);
+            transform: translateY(-3px);
+        }
+
+        /* === NEW RESPONSIVE STYLES === */
+
+        @media (max-width: 767.98px) {
+            .section-padding {
+                padding: 80px 0;
+            }
+
+            .hero-text-content .main-heading {
+                font-size: clamp(2.5rem, 12vw, 3rem);
+                /* Mobile ke liye behtar font size */
+            }
+
+            .hero-text-content .description {
+                font-size: 1rem;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
+            }
+
+            .whatsapp-float i {
+                margin-top: 13px;
+            }
+
+            .footer-social-icons a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarMain">
+    <div id="particles-bg"></div>
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbarMain">
+        <div class="container">
+            <a class="navbar-brand-custom" href="#hero">Developer : M Akhtar Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="hero-text-content">
+                        <p class="subheading">Developer</p>
+                        <h1 class="main-heading"><span id="typed-text"></span></h1>
+                        <p class="description">I'm M_Akhtar a full-stack developer specializing in high-performance,
+                            visually stunning web and mobile applications that engage and inspire.</p>
+                        <a href="#contact" class="btn-cyber-glow">Initiate Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding section-bg-alt">
+        <div class="container">
+            <div class="section-header"><span class="sub-title">Introduction</span>
+                <h2 class="main-title">Meet <span>Akhtar</span></h2>
+            </div>
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-4 text-center"><img src="img/LinkedinProfile pic.png" alt="Atiya"
+                        class="img-fluid rounded-circle"
+                        style="border: 4px solid var(--border-subtle); max-width: 280px;"></div>
+                <div class="col-lg-8">
+                    <p class="fs-5">As the lead developer M_Akhtar, my passion lies in crafting powerful web
+                        and mobile applications that blend sleek design with solid engineering. I transform complex
+                        ideas into intuitive, high-performance digital solutions that deliver real value. From concept
+                        to launch, I work closely with clients to ensure every project reflects innovation,
+                        reliability, and excellence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="section-header"><span class="sub-title">Core Offerings</span>
+                <h2 class="main-title">Services that <span>Elevate</span></h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="item-card-glass">
+                        <div class="card-icon-area"><i class="fas fa-network-wired"></i></div>
+                        <h3>Full-Stack Solutions</h3>
+                        <p>End-to-end creation of dynamic web and mobile applications, from back-end logic to immersive front-end
+                            interfaces.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="item-card-glass">
+                        <div class="card-icon-area"><i class="fab fa-wordpress"></i></div>
+                        <h3>WordPress Expertise</h3>
+                        <p>Custom WordPress theme and plugin development, advanced site optimization, and robust
+                            security protocols.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="item-card-glass">
+                        <div class="card-icon-area"><i class="fab fa-shopify"></i></div>
+                        <h3>Shopify Stores</h3>
+                        <p>Building and enhancing Shopify e-commerce platforms with custom designs and strategic app
+                            integrations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section-padding section-bg-alt">
+        <div class="container">
+            <div class="section-header"><span class="sub-title">Technical Toolkit</span>
+                <h2 class="main-title">Skills for <span>Excellence</span></h2>
+            </div>
+            <div class="row gy-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-category">
+                        <h4>Frontend</h4>
+                        <ul>
+                            <li>HTML5, CSS3</li>
+                            <li>JavaScript (ESNext)</li>
+                            <li>TypeScript</li>
+                            <li>React, Next.js</li>
+                            <li>GSAP Animation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-category">
+                        <h4>Backend</h4>
+                        <ul>
+                            <li>Node.js</li>
+                            <li>PHP, Laravel</li>
+                            <li>Python (Django, FastAPI)</li>
+                            <li>Java</li>
+                            <li>C++</li>
+                            <li>RESTful & GraphQL APIs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-category">
+                        <h4>Mobile Development</h4>
+                        <ul>
+                            <li>Flutter</li>
+                            <li>React Native</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-category">
+                        <h4>Databases</h4>
+                        <ul>
+                            <li>PostgreSQL, MongoDB</li>
+                            <li>Firebase</li>
+                            <li>SQL & NoSQL</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-category">
+                        <h4>DevOps & Tools</h4>
+                        <ul>
+                            <li>AWS, Vercel, Docker</li>
+                            <li>Visual Studio Code, Netbeans, Pycharm</li>
+                            <li>Git & CI/CD Pipelines</li>
+                            <li>NGINX, Apache</li>
+                            <li>Figma, Penpot</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="skill-category">
+                        <h4>CMS & E-Commerce</h4>
+                        <ul>
+                            <li>WordPress (Advanced)</li>
+                            <li>Shopify (Hydrogen)</li>
+                            <li>Headless (Sanity, Strapi)</li>
+                            <li>WooCommerce</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section-padding">
+        <div class="container">
+            <div class="section-header"><span class="sub-title">Showcase</span>
+                <h2 class="main-title">My Recent <span>Work</span></h2>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <!-- Project 1 -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="item-card-glass">
+                        <div class="project-video-wrapper">
+                            <video src="img/laravel project.mp4"></video>
+                            <div class="play-button-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <h3>Hospital Management System</h3>
+                        <p>A comprehensive system built with Laravel, PHP, and SQL to manage hospital operations
+                            efficiently.</p>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="item-card-glass">
+                        <div class="project-video-wrapper">
+                            <video src="img/Petinjo web.mp4"></video>
+                            <div class="play-button-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <h3>Figma to PHP Website</h3>
+                        <p>Pixel-perfect conversion of a Figma design into a fully functional multi-page website with
+                            PHP-based login/signup.</p>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="item-card-glass">
+                        <div class="project-video-wrapper">
+                            <video src="img/calculator business.mp4"></video>
+                            <div class="play-button-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <h3>Business Management Calculator</h3>
+                        <p>A custom PHP tool designed to manage various business calculations and streamline workflows.
+                        </p>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="item-card-glass">
+                        <div class="project-video-wrapper">
+                            <video src="img/cookery.mp4"></video>
+                            <div class="play-button-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <h3>Restaurant Cookery Site</h3>
+                        <p>A dynamic ASP.NET website for a restaurant, featuring a robust admin panel for easy content
+                            management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding section-bg-alt">
+        <div class="container">
+            <div class="section-header"><span class="sub-title">Get In Touch</span>
+                <h2 class="main-title">Let's Build The <span>Future</span></h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form action="https://formspree.io/f/mldlkakr" method="POST">
+                        <div class="row g-4">
+
+                            <!-- Name Input -->
+                            <div class="col-md-6">
+                                <label for="contact-name" class="form-label"
+                                    style="color: var(--text-light); display: block; margin-bottom: 0.5rem;">Your
+                                    Name</label>
+                                <input type="text" id="contact-name" name="name" class="form-control"
+                                    placeholder="Your Name" required>
+                            </div>
+
+                            <!-- Email Input -->
+                            <div class="col-md-6">
+                                <label for="contact-email" class="form-label"
+                                    style="color: var(--text-light); display: block; margin-bottom: 0.5rem;">Your
+                                    Email</label>
+                                <input type="email" id="contact-email" name="email" class="form-control"
+                                    placeholder="Your Email" required>
+                            </div>
+
+                            <!-- Subject Input -->
+                            <div class="col-12">
+                                <label for="contact-subject" class="form-label"
+                                    style="color: var(--text-light); display: block; margin-bottom: 0.5rem;">Subject</label>
+                                <input type="text" id="contact-subject" name="subject" class="form-control"
+                                    placeholder="Subject" required>
+                            </div>
+
+                            <!-- Message Textarea -->
+                            <div class="col-12">
+                                <label for="contact-message" class="form-label"
+                                    style="color: var(--text-light); display: block; margin-bottom: 0.5rem;">Your
+                                    Message</label>
+                                <textarea id="contact-message" name="message" class="form-control" rows="6"
+                                    placeholder="Your Message..." required></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="col-12 text-center mt-4">
+                                <button type="submit" class="btn-cyber-glow">Send Message</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="py-5">
+        <div class="container text-center">
+            <div class="footer-social-icons mb-4">
+                <a href="https://www.linkedin.com/in/muhammad-akhtar-868163388?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                    target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100061812803115" target="_blank"
+                    aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://github.com/muhammad-akhtar786/muhammad-akhtar786/" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <p>© <span id="currentYear"></span> Akhtar Solutions, Designed & Built by M_Akhtar.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/923297193542" class="whatsapp-float" target="_blank" aria-label="Contact on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JS Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <script>
+        (function () {
+            "use strict";
+            gsap.registerPlugin(ScrollTrigger);
+
+            // --- 1. MOVEABLE PARTICLE BACKGROUND ---
+            tsParticles.load("particles-bg", {
+                fpsLimit: 60,
+                interactivity: {
+                    events: {
+                        onHover: {
+                            enable: true,
+                            mode: "repulse"
+                        }
+                    }
+                },
+                particles: {
+                    color: {
+                        value: "#64FFDA"
+                    },
+                    links: {
+                        color: "#64FFDA",
+                        distance: 150,
+                        enable: true,
+                        opacity: 0.2,
+                        width: 1
+                    },
+                    move: {
+                        direction: "none",
+                        enable: true,
+                        outModes: {
+                            default: "bounce"
+                        },
+                        random: true,
+                        speed: 1.5
+                    },
+                    number: {
+                        density: {
+                            enable: true,
+                            area: 800
+                        },
+                        value: 80
+                    },
+                    opacity: {
+                        value: 0.3
+                    },
+                    shape: {
+                        type: "circle"
+                    },
+                    size: {
+                        value: {
+                            min: 1,
+                            max: 3
+                        }
+                    },
+                },
+                detectRetina: true,
+            });
+
+            // --- 2. TYPING EFFECT FOR HERO HEADLINE ---
+            new Typed('#typed-text', {
+                strings: ["Crafting Digital Realities.", "Building Future-Proof Apps.", "Innovating with Code."],
+                typeSpeed: 50,
+                backSpeed: 25,
+                backDelay: 1500,
+                loop: true,
+                cursorChar: '|',
+            });
+
+            // --- 3. SCROLL-TRIGGERED ANIMATIONS ---
+            gsap.utils.toArray('.section-padding').forEach(section => {
+                const header = section.querySelector('.section-header');
+                const content = section.querySelectorAll('.row > div, .skill-category, form > .row > div');
+                if (header) gsap.from(header, {
+                    autoAlpha: 0,
+                    y: 40,
+                    duration: 0.8,
+                    scrollTrigger: {
+                        trigger: header,
+                        start: 'top 85%'
+                    }
+                });
+                if (content.length > 0) gsap.from(content, {
+                    autoAlpha: 0,
+                    y: 40,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    scrollTrigger: {
+                        trigger: header || content[0],
+                        start: 'top 80%'
+                    }
+                });
+            });
+
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // --- 4. CLICK-TO-PLAY VIDEO LOGIC ---
+            document.querySelectorAll('.project-video-wrapper').forEach(wrapper => {
+                const video = wrapper.querySelector('video');
+
+                wrapper.addEventListener('click', () => {
+                    if (video.paused) {
+                        // Stop any other playing videos
+                        document.querySelectorAll('.project-video-wrapper video').forEach(v => {
+                            if (v !== video) {
+                                v.pause();
+                                v.controls = false;
+                                v.parentElement.classList.remove('playing');
+                            }
+                        });
+
+                        // Play the clicked video
+                        video.play();
+                        video.muted = false;
+                        video.controls = true;
+                        wrapper.classList.add('playing');
+                    }
+                });
+
+                // When the video ends, reset its state
+                video.addEventListener('ended', () => {
+                    video.controls = false;
+                    wrapper.classList.remove('playing');
+                    video.currentTime = 0;
+                });
+            });
+
+            // --- 5. SEND CONTACT FORM TO WHATSAPP ---
+            const contactForm = document.querySelector('#contact form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+
+                    const nameInput = document.getElementById('contact-name');
+                    const emailInput = document.getElementById('contact-email');
+                    const subjectInput = document.getElementById('contact-subject');
+                    const messageInput = document.getElementById('contact-message');
+
+                    const name = nameInput ? nameInput.value.trim() : '';
+                    const email = emailInput ? emailInput.value.trim() : '';
+                    const subject = subjectInput ? subjectInput.value.trim() : '';
+                    const message = messageInput ? messageInput.value.trim() : '';
+
+                    const whatsappNumber = '923297193542';
+                    const text = `New Contact Message:\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`;
+                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+
+                    window.open(whatsappUrl, '_blank');
+                });
+            }
+
+        })();
+    </script>
+</body>
+
+</html>
